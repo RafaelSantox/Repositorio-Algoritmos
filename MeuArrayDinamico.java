@@ -30,6 +30,20 @@ public class MeuArrayDinamico {
         dados[tamanho++] = valor;
     }
 
+    public void remove(int indice){
+        if (indice < 0 || indice >= tamanho){
+            throw new IndexOutOfBoundsException("Indice invalido: " + indice);
+        }
+        /* Todo 1: desloque cada elemento de (indice + 1) ate (tamanho - 1)
+            uma posicao para a esquerda.
+            ou seja: dados [i] = dados[i+1] (para i de indice ate tamanho-2)
+           Todo 2: decremente 'tamanho' 
+        */
+       for (int i = indice; i < tamanho - 1; i++)
+            dados[i] = dados[i + 1];
+        tamanho--;
+    }
+
     /** Retorna o elemento na posicao ’indice ’. */
     public int get ( int indice ) {
         if ( indice < 0 || indice >= tamanho )
@@ -66,6 +80,10 @@ public class MeuArrayDinamico {
         arr . add (30) ; // deve fazer resize aqui !s
         arr . add (40) ;
         arr . imprimir () ; // [10 , 20 , 30 , 40]
-        System . out . println (" Tamanho : " + arr . size () ) ; // 4
+        arr . remove(1); //remove o 20
+        arr . imprimir(); // [10,30,40]
+        arr . remove(0); // remove o 10
+        arr . imprimir(); // [30,40]
+        System . out . println (" Tamanho : " + arr . size () ) ; // 2
     }
 }
